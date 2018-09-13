@@ -1,0 +1,7 @@
+
+#使用dev环境（测试）
+#使用prod环境（正式）就在这里切换
+spring:
+  profiles:
+    active: dev
+

@@ -1,0 +1,11 @@
+spring:
+  datasource:
+     driver-class-name: com.mysql.jdbc.Driver
+     url: jdbc:mysql://localhost:3306/xf?useSSL=false
+     username: root
+     password: xiongfeng
+  jpa:
+      hibernate:
+       ddl-auto: create
+      show-sql: true
+#ddl-auto  启动会清空且自动创建表
