@@ -1,8 +1,9 @@
-package com.example.demo;
+package com.example.demo.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
 
 /**
  * Created by Administrator on 2018/9/12 0012.
@@ -15,6 +16,7 @@ public class Gril {
 
     private String cupSize;
 
+    @Min(value = 18,message = "未满18岁禁止入内")
     private int age;
 
     public Gril() {

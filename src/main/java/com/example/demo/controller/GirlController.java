@@ -1,11 +1,13 @@
 package com.example.demo.controller;
 
-import com.example.demo.Gril;
-import com.example.demo.GrilResponseData;
-import com.example.demo.GrilService;
+import com.example.demo.domain.Gril;
+import com.example.demo.responseDate.GrilResponseData;
+import com.example.demo.service.GrilService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -29,6 +31,16 @@ public class GirlController {
         gril.setAge(age);
         gril.setCupSize(cupSize);
         gril.setId(id);
+        return grilResponseData.save(gril) ;
+    }
+    @PostMapping(value = "/add1")//增加,表单验证，BindingResult为验证的结果
+    public Gril addGrils(@Valid  Gril gril, BindingResult result){
+
+        if(result.hasErrors())
+        {
+            System.out.println(result.getFieldError().getDefaultMessage());
+            return null;
+        }
         return grilResponseData.save(gril) ;
     }
     @PutMapping(value = "/update/{id}")//更新
