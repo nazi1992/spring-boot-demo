@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.Gril;
 import com.example.demo.GrilResponseData;
+import com.example.demo.GrilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,8 @@ import java.util.List;
 public class GirlController {
     @Autowired
     private GrilResponseData grilResponseData;
+    @Autowired
+    private GrilService grilService;
     @RequestMapping(value="/grils",method = RequestMethod.GET)
     public List<Gril> getGrils(){
         return grilResponseData.findAll();
@@ -51,5 +54,10 @@ public class GirlController {
     public List<Gril> getAge(@PathVariable("age") Integer age){
 
         return grilResponseData.findByAge(age);
+    }
+    @PostMapping(value = "/add/two")//查询根据id
+    public void addTwo(){
+
+         grilService.addTwo();
     }
 }
