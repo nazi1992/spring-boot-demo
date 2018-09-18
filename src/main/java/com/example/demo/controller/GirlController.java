@@ -1,8 +1,11 @@
 package com.example.demo.controller;
 
+import com.example.demo.domain.Const;
 import com.example.demo.domain.Gril;
+import com.example.demo.domain.Result;
 import com.example.demo.responseDate.GrilResponseData;
 import com.example.demo.service.GrilService;
+import com.example.demo.util.RsultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -34,14 +37,16 @@ public class GirlController {
         return grilResponseData.save(gril) ;
     }
     @PostMapping(value = "/add1")//增加,表单验证，BindingResult为验证的结果
-    public Gril addGrils(@Valid  Gril gril, BindingResult result){
+    public Result<Gril> addGrils(@Valid  Gril gril, BindingResult result){
 
         if(result.hasErrors())
         {
             System.out.println(result.getFieldError().getDefaultMessage());
-            return null;
+
+            return RsultUtil.getErrorResult(result.getFieldError().getDefaultMessage(),Const.error.getCode());
         }
-        return grilResponseData.save(gril) ;
+
+        return RsultUtil.getSuccessResult(grilResponseData.save(gril),Const.success.getDesc()) ;
     }
     @PutMapping(value = "/update/{id}")//更新
     public Gril updateGrils(@PathVariable("id") Integer id,
@@ -71,5 +76,10 @@ public class GirlController {
     public void addTwo(){
 
          grilService.addTwo();
+    }
+    @GetMapping(value = "/getAge/{id}")//统一异常处理
+    public void getCupSize(@PathVariable("id") Integer id){
+
+        grilService.getCupSize(id);
     }
 }
