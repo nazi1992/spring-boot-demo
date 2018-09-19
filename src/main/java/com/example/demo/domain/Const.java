@@ -4,7 +4,7 @@ package com.example.demo.domain;
  * Created by Administrator on 2018/9/18 0018.
  */
 public enum Const {
-    error(-1,"未知错误"),success(0,"成功");
+    error(-1,"未知错误"),success(0,"成功"),tomin(100,"年龄太小"),tomax(200,"年龄太大"),;
     private int code;
     private String desc;
 

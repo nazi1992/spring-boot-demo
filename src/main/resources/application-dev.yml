@@ -6,6 +6,7 @@ spring:
      password: xiongfeng
   jpa:
       hibernate:
-       ddl-auto: create
+       ddl-auto: update
       show-sql: true
-#ddl-auto  启动会清空且自动创建表
+#ddl-auto  create 启动会清空且自动创建表，update 更新表
+

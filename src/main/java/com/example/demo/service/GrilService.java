@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.GrilException;
+import com.example.demo.domain.Const;
 import com.example.demo.domain.Gril;
 import com.example.demo.responseDate.GrilResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,15 +35,23 @@ public class GrilService {
             int age = gril.getAge();
             if(age<10)
             {
-                throw new GrilException("小于10",-1);
+                throw new GrilException(Const.tomin.getDesc(),Const.tomin.getCode());
             }
-            else if(age<44)
+            else if(age>44)
             {
-                throw new GrilException("小于16",-1);
+                throw new GrilException(Const.tomax.getDesc(),Const.tomax.getCode());
             }
         }else
         {
             throw new GrilException("查不到相关信息",-1);
         }
+    }
+    public Integer getCupSize1(int id){
+        Gril gril = grilResponseData.findOne(id);
+        if(gril!=null)
+        {
+           return gril.getAge();
+        }
+        return null;
     }
 }
